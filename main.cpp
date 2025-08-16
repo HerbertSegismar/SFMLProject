@@ -23,10 +23,31 @@ int main()
         while (const std::optional event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())
+            {
                 window.close();
+                break;
+            }
+
+            if (const auto* ev = event->getIf<sf::Event::KeyPressed>()){
+
+                switch (ev->scancode)
+                {
+                case sf::Keyboard::Scan::Escape:
+                    window.close();
+                    break;
+
+                case sf::Keyboard::Scan::Space:
+                    window.close();
+                    break;
+                
+                default:
+                    break;
+                }
+            }
+
         }
 
-        window.clear();
+        window.clear(sf::Color(34,5,54,255));
         window.draw(shape);
         window.display();
     }
