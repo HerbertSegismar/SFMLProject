@@ -1,10 +1,22 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Network.hpp>
+#include <SFML/Audio.hpp>
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({200, 200}), "SFML work!");
+    sf::RenderWindow window(sf::VideoMode({640, 480}), "Vector Crafts", sf::Style::Titlebar | sf::Style::Close);
     sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Red);
+    shape.setFillColor(sf::Color::Green);
+
+    sf::Image icon;
+    if (!icon.loadFromFile("vectorcrafts.png"))
+    {
+        return -1;
+    }
+
+    window.setIcon(icon);
 
     while (window.isOpen())
     {
@@ -18,5 +30,5 @@ int main()
         window.draw(shape);
         window.display();
     }
-    
+    return 0;
 }
